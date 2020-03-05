@@ -1,0 +1,29 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Node.js blog for development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JRC404/node-blog.git"
+  },
+  "keywords": [
+    "blog",
+    "node",
+    "express",
+    "mongo"
+  ],
+  "author": "Jacob Reilly-Cooper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JRC404/node-blog/issues"
+  },
+  "homepage": "https://github.com/JRC404/node-blog#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  }
+}
