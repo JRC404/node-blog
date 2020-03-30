@@ -3,8 +3,8 @@
 
     <p class="content">{{this.content}}</p>
 
-    <hr>
-    <p class="author">{{this.author}}</p>
+    {{!-- <hr> --}}
+    <p class="author">Author: {{this.author}}</p>
 
     <form action="/{{this.ID}}" method="post">
         <input type="hidden" name="id" value="{{this.ID}}">

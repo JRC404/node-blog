@@ -57,7 +57,7 @@ app.post("/write", (req, res) => {
 
 app.get("/", async (req, res) => {
   let postInfo = await BlogSchema.find({});
-  console.log(postInfo);
+  //   console.log(postInfo);
 
   let newPostInfo = [];
 
@@ -79,8 +79,6 @@ app.post("/:id", (req, res) => {
 });
 
 app.post("/edit/:id", async (req, res) => {
-  console.log("the fuck man");
-
   let blogTitle = req.body.blogTitle;
   let blogContent = req.body.blogContent;
   let blogAuthor = req.body.blogAuthor;
