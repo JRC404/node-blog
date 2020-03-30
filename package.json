@@ -1,31 +1,24 @@
 {
-  "name": "blog",
+  "name": "express-demo-turing",
   "version": "1.0.0",
-  "description": "Node.js blog for development.",
+  "description": "Express demo starting from scratch",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JRC404/node-blog.git"
-  },
   "keywords": [
-    "blog",
-    "node",
+    "mongo",
     "express",
-    "mongo"
+    "node",
+    "turing",
+    "fun"
   ],
   "author": "Jacob Reilly-Cooper",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JRC404/node-blog/issues"
-  },
-  "homepage": "https://github.com/JRC404/node-blog#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "mongoose": "^5.9.3"
+    "express-handlebars": "^3.1.0",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
   }
 }

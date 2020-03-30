@@ -1,28 +1,27 @@
-// initial setup of application
-const express = require('express');
+const express = require("express");
+const request = require("request");
+const path = require("path");
+const hbs = require("express-handlebars");
+
 const app = express();
+const getPost = require("./lib/getPost");
 
-// mongoose
-const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/node-blog");
+app.use(express.static(path.join(__dirname, "public")));
 
-// body parser
-const bodyParser = require('body-parser')
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+app.engine(
+  ".hbs",
+  hbs({
+    defaultLayout: "layout",
+    extname: ".hbs"
+  })
+);
 
-// engine setup
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.set("view engine", ".hbs");
 
-//routes
-app.get('/', (req, res) => {
-    res.render('index');
+app.get("/", async (req, res) => {
+  res.render("index");
 });
 
-// app.listen
 app.listen(3005, () => {
-    console.log('Server listening on 3005.');
-})
+  console.log("I am listening on port 3005.");
+});
