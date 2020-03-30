@@ -10,7 +10,6 @@ const BlogSchema = require("./models/blog");
 mongoose.connect(
   `mongodb+srv://${process.env.Username}:${process.env.Password}@cluster0-4fdtu.mongodb.net/blogInfo?retryWrites=true&w=majority`,
   {
-    // these two are something to look into... more information will follow but right now... let's code.
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
@@ -22,7 +21,6 @@ const getPost = require("./lib/getPost");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   bodyParser.urlencoded({
-    // kirsty saved the day :-)
     extended: false
   })
 );
@@ -40,6 +38,14 @@ app.set("view engine", ".hbs");
 
 app.get("/", async (req, res) => {
   res.render("index");
+});
+
+app.get("/blog", async (req, res) => {
+  BlogSchema.find({}, (err, docs) => {
+    let postInfo = docs;
+    console.log(postInfo);
+  });
+  res.render("blog");
 });
 
 app.post("/", (req, res) => {
