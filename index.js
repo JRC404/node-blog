@@ -93,6 +93,6 @@ app.post("/edit/:id", async (req, res) => {
   res.redirect("/");
 });
 
-app.listen(3005, () => {
+app.listen(process.env.PORT || 3005, () => {
   console.log("I am listening on port 3005.");
 });
