@@ -1,0 +1,13 @@
+<div class="post">
+    <h2 class="title">{{this.title}}</h2>
+
+    <p class="content">{{this.content}}</p>
+
+    <hr>
+    <p class="author">{{this.author}}</p>
+
+    <form action="/blog/{{this.ID}}" method="post">
+        <input type="hidden" name="id" value="{{this.ID}}">
+        <input type="submit" value="edit">
+    </form>
+</div>

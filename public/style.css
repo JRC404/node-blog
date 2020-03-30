@@ -1,0 +1,13 @@
+#postContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.post {
+    margin-top: 2%;
+    text-align: center;
+    border: 2px solid #FF8C42;
+    border-radius: 20%;
+}

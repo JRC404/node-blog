@@ -40,14 +40,6 @@ app.get("/", async (req, res) => {
   res.render("index");
 });
 
-app.get("/blog", async (req, res) => {
-  BlogSchema.find({}, (err, docs) => {
-    let postInfo = docs;
-    console.log(postInfo);
-  });
-  res.render("blog");
-});
-
 app.post("/", (req, res) => {
   let blogTitle = req.body.blogTitle;
   let blogContent = req.body.blogContent;
@@ -61,6 +53,44 @@ app.post("/", (req, res) => {
 
   newBlog.save();
   res.render("index");
+});
+
+app.get("/blog", async (req, res) => {
+  let postInfo = await BlogSchema.find({});
+  console.log(postInfo);
+
+  let newPostInfo = [];
+
+  for (const obj of postInfo) {
+    newPostInfo.push({
+      title: obj.blogTitle,
+      content: obj.blogContent,
+      author: obj.blogAuthor,
+      ID: obj._id
+    });
+  }
+  res.render("blog", { newPostInfo });
+});
+
+app.post("/blog/:id", (req, res) => {
+  console.log(req.params);
+
+  res.render("edit", { id: req.params.id });
+});
+
+app.post("/edit/:id", async (req, res) => {
+  console.log("the fuck man");
+
+  let blogTitle = req.body.blogTitle;
+  let blogContent = req.body.blogContent;
+  let blogAuthor = req.body.blogAuthor;
+
+  await BlogSchema.findByIdAndUpdate(req.params.id, {
+    blogTitle: blogTitle,
+    blogContent: blogContent,
+    blogAuthor: blogAuthor
+  });
+  res.redirect("/blog");
 });
 
 app.listen(3005, () => {
