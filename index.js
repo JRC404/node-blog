@@ -36,11 +36,11 @@ app.engine(
 
 app.set("view engine", ".hbs");
 
-app.get("/", async (req, res) => {
-  res.render("index");
+app.get("/write", async (req, res) => {
+  res.render("write");
 });
 
-app.post("/", (req, res) => {
+app.post("/write", (req, res) => {
   let blogTitle = req.body.blogTitle;
   let blogContent = req.body.blogContent;
   let blogAuthor = req.body.blogAuthor;
@@ -52,10 +52,10 @@ app.post("/", (req, res) => {
   });
 
   newBlog.save();
-  res.render("index");
+  res.redirect("/");
 });
 
-app.get("/blog", async (req, res) => {
+app.get("/", async (req, res) => {
   let postInfo = await BlogSchema.find({});
   console.log(postInfo);
 
@@ -69,10 +69,10 @@ app.get("/blog", async (req, res) => {
       ID: obj._id
     });
   }
-  res.render("blog", { newPostInfo });
+  res.render("index", { newPostInfo });
 });
 
-app.post("/blog/:id", (req, res) => {
+app.post("/:id", (req, res) => {
   console.log(req.params);
 
   res.render("edit", { id: req.params.id });
@@ -90,7 +90,7 @@ app.post("/edit/:id", async (req, res) => {
     blogContent: blogContent,
     blogAuthor: blogAuthor
   });
-  res.redirect("/blog");
+  res.redirect("/");
 });
 
 app.listen(3005, () => {

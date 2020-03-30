@@ -8,10 +8,12 @@ I will be using Node, Express and MongoDB for this project.
 
 ## Things to do
 
-- [ ] Express server
-- [ ] Template for styling (HBS)
-- [ ] MongoDB setup
+- [x] Express server
+- [x] Template for styling (HBS)
+- [x] MongoDB setup
 - [ ] Documentation / Comments / Wiki
 - [ ] Research into deployment
 
-### Things to install
+## Contributors
+
+Dean Singleton

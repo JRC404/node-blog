@@ -1,9 +1,8 @@
-<h1>Edit of posts</h1>
+<h1>Write a Post</h1>
 
-<form action="/edit/{{id}}" method="POST">
+<form action="/write" method="POST">
     <input type="text" type="text" placeholder="Blog title" name="blogTitle"><br>
-    <textarea type="text" type="text" placeholder="Blog Content" name="blogContent"><br>
+    <input type="text" type="text" placeholder="Blog Content" name="blogContent"><br>
     <input type="text" type="text" placeholder="Blog Author" name="blogAuthor"><br>
     <input type="submit" value="Submit Blog Post">
-    <input type="hidden" name="id" value="{{id}}">
 </form>

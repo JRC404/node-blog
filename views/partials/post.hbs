@@ -6,7 +6,7 @@
     <hr>
     <p class="author">{{this.author}}</p>
 
-    <form action="/blog/{{this.ID}}" method="post">
+    <form action="/{{this.ID}}" method="post">
         <input type="hidden" name="id" value="{{this.ID}}">
         <input type="submit" value="edit">
     </form>
