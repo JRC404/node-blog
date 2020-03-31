@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const BlogSchema = require("./models/blog");
 
 mongoose.connect(
-  `mongodb+srv://${process.env.Username}:${process.env.Password}@cluster0-4fdtu.mongodb.net/blogInfo?retryWrites=true&w=majority`,
+  `mongodb+srv://${process.env.Username}:${process.env.Password}@${process.env.DatabaseURL}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
