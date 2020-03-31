@@ -140,6 +140,10 @@ app.post("/signup", (req, res) => {
   user.save();
 });
 
+app.get("/dean", (req, res) => {
+  res.render("dean");
+});
+
 app.use((req, res, next) => {
   // req, res and next are all able to be used inside of this function
   if (res.status(404)) {
