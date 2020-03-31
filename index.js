@@ -140,6 +140,15 @@ app.post("/signup", (req, res) => {
   user.save();
 });
 
+app.use((req, res, next) => {
+  // req, res and next are all able to be used inside of this function
+  if (res.status(404)) {
+    res.render("404"); // we need a 404.hbs
+    return; // to leave the if statement
+  }
+  next(); // runs the next middleware function... is there one to run?
+});
+
 app.listen(process.env.PORT || 3005, () => {
   console.log("I am listening on port 3005.");
 });
