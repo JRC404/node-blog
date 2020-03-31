@@ -11,9 +11,16 @@ I will be using Node, Express and MongoDB for this project.
 - [x] Express server
 - [x] Template for styling (HBS)
 - [x] MongoDB setup
+- [x] Research into deployment - Heroku
+- [x] GET - posts, edit etc
+- [x] POST - post updates, deletes
+- [ ] Timestamps for posts
+- [ ] Comments
 - [ ] Documentation / Comments / Wiki
-- [ ] Research into deployment
+- [ ] Sessions for sign in
+- [ ] Research into safe deployment. You've done deployment, Jacob. Now, do it safely.
 
 ## Contributors
 
 Dean Singleton
+Mongoose Documentation
