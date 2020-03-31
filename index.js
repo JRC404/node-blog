@@ -57,6 +57,11 @@ app.post("/write", (req, res) => {
 
 app.get("/", async (req, res) => {
   let postInfo = await BlogSchema.find({});
+  //   let postInfo = await BlogSchema.find({}).catch(err => {
+  //     let field = Object.keys(err.keyValue)[0];
+  //     let error = "";
+  //   });
+
   //   console.log(postInfo);
 
   let newPostInfo = [];
@@ -88,6 +93,12 @@ app.post("/edit/:id", async (req, res) => {
     blogContent: blogContent,
     blogAuthor: blogAuthor
   });
+  res.redirect("/");
+});
+
+app.post("/delete/posts/:id", async (req, res) => {
+  await BlogSchema.findByIdAndRemove(req.params.id, {});
+
   res.redirect("/");
 });
 

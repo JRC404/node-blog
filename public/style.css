@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: rgb(218, 218, 218);
 }
 
 #postContainer {
@@ -12,11 +13,12 @@ body {
     text-align: center;
     /* align-items: center; */
     align-content: center;
+    background-color: white;
 }
 
 .post {
-    margin-top: 2%;
-    text-align: center;
+    /* margin-top: 2%; */
+    text-align: left;
 }
 
 .heading {
@@ -25,18 +27,20 @@ body {
     font-size: 3em;
 }
 
-.title {
-    background-color: #f26419;
+.information {
+    background-color: #221d23;
     color: white;
     padding: 1em;
-    font-size: 3em;
+    padding-left: 1.5em;
     /* width: 50%; */
+}
 
+.title {
+    font-size: 3em;
 }
 
 .author {
-    color: #1f5673;
-    font-style: italic;
+    /* color: #1f5673; */
     font-weight: bold;
 }
 

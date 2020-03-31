@@ -1,13 +1,21 @@
 <div class="post">
-    <h2 class="title">{{this.title}}</h2>
+    <div class="information">
+        <h2 class="title">{{this.title}}</h2>
+        <p class="author">By {{this.author}}</p>
+    </div>
 
     <p class="content">{{this.content}}</p>
 
     {{!-- <hr> --}}
-    <p class="author">Author: {{this.author}}</p>
 
+    <br>
     <form action="/{{this.ID}}" method="post">
         <input type="hidden" name="id" value="{{this.ID}}">
         <input type="submit" value="edit">
     </form>
+    <form action="/delete/posts/{{this.ID}}" method="post">
+        <input type="hidden" name="id" value="{{this.ID}}">
+        <input type="submit" value="delete">
+    </form>
+    <br>
 </div>
