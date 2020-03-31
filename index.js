@@ -6,6 +6,7 @@ require("dotenv").config();
 
 const mongoose = require("mongoose");
 const BlogSchema = require("./models/blog");
+const UserSchema = require("./models/user");
 
 mongoose.connect(
   `mongodb+srv://${process.env.Username}:${process.env.Password}@${process.env.DatabaseURL}`,
@@ -57,13 +58,6 @@ app.post("/write", (req, res) => {
 
 app.get("/", async (req, res) => {
   let postInfo = await BlogSchema.find({});
-  //   let postInfo = await BlogSchema.find({}).catch(err => {
-  //     let field = Object.keys(err.keyValue)[0];
-  //     let error = "";
-  //   });
-
-  //   console.log(postInfo);
-
   let newPostInfo = [];
 
   for (const obj of postInfo) {
@@ -100,6 +94,50 @@ app.post("/delete/posts/:id", async (req, res) => {
   await BlogSchema.findByIdAndRemove(req.params.id, {});
 
   res.redirect("/");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("signup");
+});
+
+app.post("/signup", (req, res) => {
+  let name = req.body.name;
+  let email = req.body.email;
+  let password = req.body.password;
+
+  UserSchema.findOne(
+    {
+      email
+    },
+    function(err, user) {
+      if (err) {
+        console.log("Error.");
+      }
+
+      if (user) {
+        let err = new Error(
+          `${email}A user with that email has already registered.`
+        );
+        err.status = 400;
+        console.log(err);
+        res.render("signup", {
+          errorMessage: `${email} already taken. A user with that email has already registered.`
+        });
+        return;
+      }
+      res.render("index", {
+        name,
+        title: "Your Profile"
+      });
+    }
+  );
+
+  const user = new UserSchema({
+    name: name,
+    email: email,
+    password: password
+  });
+  user.save();
 });
 
 app.listen(process.env.PORT || 3005, () => {
