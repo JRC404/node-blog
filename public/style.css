@@ -16,6 +16,12 @@ body {
     background-color: white;
 }
 
+.buttonRow {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
 .post {
     /* margin-top: 2%; */
     text-align: left;

@@ -9,13 +9,15 @@
     {{!-- <hr> --}}
 
     <br>
-    <form action="/{{this.ID}}" method="post">
-        <input type="hidden" name="id" value="{{this.ID}}">
-        <input type="submit" value="edit">
-    </form>
-    <form action="/delete/posts/{{this.ID}}" method="post">
-        <input type="hidden" name="id" value="{{this.ID}}">
-        <input type="submit" value="delete">
-    </form>
+    <div class="buttonRow">
+        <form action="/{{this.ID}}" method="post">
+            <input type="hidden" name="id" value="{{this.ID}}">
+            <input type="submit" value="edit">
+        </form>
+        <form action="/delete/posts/{{this.ID}}" method="post">
+            <input type="hidden" name="id" value="{{this.ID}}">
+            <input type="submit" value="delete">
+        </form>
+    </div>
     <br>
 </div>
