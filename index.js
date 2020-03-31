@@ -7,6 +7,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const BlogSchema = require("./models/blog");
 const UserSchema = require("./models/user");
+const CommentSchema = require("./models/comments");
 
 mongoose.connect(
   `mongodb+srv://${process.env.Username}:${process.env.Password}@${process.env.DatabaseURL}`,
