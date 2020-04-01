@@ -14,7 +14,7 @@ I will be using Node, Express and MongoDB for this project.
 - [x] Research into deployment - Heroku
 - [x] GET - posts, edit etc
 - [x] POST - post updates, deletes
-- [ ] Timestamps for posts
+- [x] Timestamps for posts
 - [ ] Comments
 - [ ] Documentation / Comments / Wiki
 - [ ] Sessions for sign in
