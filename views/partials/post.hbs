@@ -2,15 +2,17 @@
     <div class="information">
         <h2 class="title">{{this.title}}</h2>
         <p class="author">By {{this.author}}</p>
+        <p class="timestamp">Created on {{this.createdOn}}</p>
     </div>
 
     <p class="content">{{this.content}}</p>
+
 
     {{!-- <hr> --}}
 
     <br>
     <div class="buttonRow">
-        <form action="/{{this.ID}}" method="post">
+        <form action="/posts/{{this.ID}}" method="post">
             <input type="hidden" name="id" value="{{this.ID}}">
             <input type="submit" value="edit">
         </form>

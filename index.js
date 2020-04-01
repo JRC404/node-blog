@@ -42,7 +42,7 @@ app.get("/write", async (req, res) => {
   res.render("write");
 });
 
-app.post("/write", (req, res) => {
+app.post("/write", async (req, res) => {
   let blogTitle = req.body.blogTitle;
   let blogContent = req.body.blogContent;
   let blogAuthor = req.body.blogAuthor;
@@ -50,10 +50,12 @@ app.post("/write", (req, res) => {
   const newBlog = new BlogSchema({
     blogTitle: blogTitle,
     blogContent: blogContent,
-    blogAuthor: blogAuthor
+    blogAuthor: blogAuthor,
+    createdOn: Date.now(),
+    upVotes: 0
   });
 
-  newBlog.save();
+  await newBlog.save(); // javascript was gigiddy.
   res.redirect("/");
 });
 
@@ -66,13 +68,14 @@ app.get("/", async (req, res) => {
       title: obj.blogTitle,
       content: obj.blogContent,
       author: obj.blogAuthor,
+      createdOn: obj.createdOn.toUTCString(),
       ID: obj._id
     });
   }
   res.render("index", { newPostInfo });
 });
 
-app.post("/:id", (req, res) => {
+app.post("/posts/:id", (req, res) => {
   console.log(req.params);
 
   res.render("edit", { id: req.params.id });
@@ -101,44 +104,34 @@ app.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-app.post("/signup", (req, res) => {
-  let name = req.body.name;
+app.post("/signup", async (req, res) => {
+  let username = req.body.username;
   let email = req.body.email;
   let password = req.body.password;
 
-  UserSchema.findOne(
-    {
-      email
-    },
-    function(err, user) {
-      if (err) {
-        console.log("Error.");
-      }
+  let existingUser = await UserSchema.findOne({ email });
 
-      if (user) {
-        let err = new Error(
-          `${email}A user with that email has already registered.`
-        );
-        err.status = 400;
-        console.log(err);
-        res.render("signup", {
-          errorMessage: `${email} already taken. A user with that email has already registered.`
-        });
-        return;
-      }
-      res.render("index", {
-        name,
-        title: "Your Profile"
-      });
-    }
-  );
+  if (existingUser) {
+    let err = new Error(
+      `${email}A user with that email has already registered.`
+    );
+
+    err.status = 400;
+    console.log(err);
+    res.render("signup", {
+      errorMessage: `${email} already taken. A user with that email has already registered.`
+    });
+    return;
+  }
 
   const user = new UserSchema({
-    name: name,
+    username: username,
     email: email,
     password: password
   });
   user.save();
+
+  res.redirect("/");
 });
 
 app.get("/dean", (req, res) => {

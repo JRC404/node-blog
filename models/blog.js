@@ -10,9 +10,19 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  createdOn: {
+    type: Date,
+    required: true,
+    unique: false
+  },
   blogAuthor: {
     type: String,
     required: true
+  },
+  upVotes: {
+    type: Number,
+    required: true,
+    unique: false
   }
 });
 
