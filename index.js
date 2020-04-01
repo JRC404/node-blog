@@ -9,13 +9,10 @@ const BlogSchema = require("./models/blog");
 const UserSchema = require("./models/user");
 const CommentSchema = require("./models/comments");
 
-mongoose.connect(
-  `mongodb+srv://${process.env.Username}:${process.env.Password}@${process.env.DatabaseURL}`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
+mongoose.connect(`${process.env.DatabaseURL}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const app = express();
 const getPost = require("./lib/getPost");
@@ -61,7 +58,9 @@ app.post("/write", async (req, res) => {
 
 app.get("/", async (req, res) => {
   let postInfo = await BlogSchema.find({});
+  let commentInfo = await CommentSchema.find({});
   let newPostInfo = [];
+  let newCommentInfo = [];
 
   for (const obj of postInfo) {
     newPostInfo.push({
@@ -72,7 +71,14 @@ app.get("/", async (req, res) => {
       ID: obj._id
     });
   }
-  res.render("index", { newPostInfo });
+
+  for (const obj of commentInfo) {
+    newCommentInfo.push({
+      comment: obj.comment,
+      commentAuthor: obj.author
+    });
+  }
+  res.render("index", { newPostInfo, newCommentInfo });
 });
 
 app.post("/posts/:id", (req, res) => {
