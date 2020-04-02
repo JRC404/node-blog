@@ -140,6 +140,20 @@ app.post("/signup", async (req, res) => {
   res.redirect("/");
 });
 
+app.get("/comment", async (req, res) => {
+  let commentInfo = await CommentSchema.find({});
+  let newCommentInfo = [];
+
+  for (const obj of commentInfo) {
+    newCommentInfo.push({
+      comment: obj.comment,
+      commentAuthor: obj.author
+    });
+  }
+
+  res.render("comment");
+});
+
 app.get("/dean", (req, res) => {
   res.render("dean");
 });
