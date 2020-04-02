@@ -5,9 +5,6 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const mongoose = require("mongoose");
-const BlogSchema = require("./models/blog");
-const UserSchema = require("./models/user");
-const CommentSchema = require("./models/comments");
 
 mongoose.connect(`${process.env.DatabaseURL}`, {
   useNewUrlParser: true,
@@ -35,128 +32,22 @@ app.engine(
 
 app.set("view engine", ".hbs");
 
-app.get("/write", async (req, res) => {
-  res.render("write");
-});
+const indexRoutes = require("./controllers/index");
+app.get("/", indexRoutes.getIndex);
 
-app.post("/write", async (req, res) => {
-  let blogTitle = req.body.blogTitle;
-  let blogContent = req.body.blogContent;
-  let blogAuthor = req.body.blogAuthor;
+app.get("/write", indexRoutes.getWrite);
+app.post("/write", indexRoutes.postWrite);
 
-  const newBlog = new BlogSchema({
-    blogTitle: blogTitle,
-    blogContent: blogContent,
-    blogAuthor: blogAuthor,
-    createdOn: Date.now(),
-    upVotes: 0
-  });
+app.post("/posts/:id", indexRoutes.postIndex);
+app.post("/edit/:id", indexRoutes.postEdit);
+app.post("/delete/posts/:id", indexRoutes.postDelete);
 
-  await newBlog.save(); // javascript was gigiddy.
-  res.redirect("/");
-});
+app.get("/signup", indexRoutes.getSignup);
+app.post("/signup", indexRoutes.postSignup);
 
-app.get("/", async (req, res) => {
-  let postInfo = await BlogSchema.find({});
-  let commentInfo = await CommentSchema.find({});
-  let newPostInfo = [];
-  let newCommentInfo = [];
+app.get("/comment", indexRoutes.getComment);
 
-  for (const obj of postInfo) {
-    newPostInfo.push({
-      title: obj.blogTitle,
-      content: obj.blogContent,
-      author: obj.blogAuthor,
-      createdOn: obj.createdOn.toUTCString(),
-      ID: obj._id
-    });
-  }
-
-  for (const obj of commentInfo) {
-    newCommentInfo.push({
-      comment: obj.comment,
-      commentAuthor: obj.author
-    });
-  }
-  res.render("index", { newPostInfo, newCommentInfo });
-});
-
-app.post("/posts/:id", (req, res) => {
-  console.log(req.params);
-
-  res.render("edit", { id: req.params.id });
-});
-
-app.post("/edit/:id", async (req, res) => {
-  let blogTitle = req.body.blogTitle;
-  let blogContent = req.body.blogContent;
-  let blogAuthor = req.body.blogAuthor;
-
-  await BlogSchema.findByIdAndUpdate(req.params.id, {
-    blogTitle: blogTitle,
-    blogContent: blogContent,
-    blogAuthor: blogAuthor
-  });
-  res.redirect("/");
-});
-
-app.post("/delete/posts/:id", async (req, res) => {
-  await BlogSchema.findByIdAndRemove(req.params.id, {});
-
-  res.redirect("/");
-});
-
-app.get("/signup", (req, res) => {
-  res.render("signup");
-});
-
-app.post("/signup", async (req, res) => {
-  let username = req.body.username;
-  let email = req.body.email;
-  let password = req.body.password;
-
-  let existingUser = await UserSchema.findOne({ email });
-
-  if (existingUser) {
-    let err = new Error(
-      `${email}A user with that email has already registered.`
-    );
-
-    err.status = 400;
-    console.log(err);
-    res.render("signup", {
-      errorMessage: `${email} already taken. A user with that email has already registered.`
-    });
-    return;
-  }
-
-  const user = new UserSchema({
-    username: username,
-    email: email,
-    password: password
-  });
-  user.save();
-
-  res.redirect("/");
-});
-
-app.get("/comment", async (req, res) => {
-  let commentInfo = await CommentSchema.find({});
-  let newCommentInfo = [];
-
-  for (const obj of commentInfo) {
-    newCommentInfo.push({
-      comment: obj.comment,
-      commentAuthor: obj.author
-    });
-  }
-
-  res.render("comment");
-});
-
-app.get("/dean", (req, res) => {
-  res.render("dean");
-});
+app.get("/dean", indexRoutes.getDean);
 
 app.use((req, res, next) => {
   // req, res and next are all able to be used inside of this function
