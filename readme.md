@@ -16,7 +16,7 @@ I will be using Node, Express and MongoDB for this project.
 - [x] POST - post updates, deletes
 - [x] Timestamps for posts
 - [x] Controllers
-- [ ] Routes
+- [x] Routes
 - [ ] Comments
 - [ ] Documentation / Comments / Wiki
 - [ ] Sessions for sign in
