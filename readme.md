@@ -15,6 +15,8 @@ I will be using Node, Express and MongoDB for this project.
 - [x] GET - posts, edit etc
 - [x] POST - post updates, deletes
 - [x] Timestamps for posts
+- [x] Controllers
+- [ ] Routes
 - [ ] Comments
 - [ ] Documentation / Comments / Wiki
 - [ ] Sessions for sign in
@@ -23,4 +25,5 @@ I will be using Node, Express and MongoDB for this project.
 ## Contributors
 
 Dean Singleton
+
 Mongoose Documentation
