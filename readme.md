@@ -1,10 +1,6 @@
 # Node.js blog
 
-Furthering my development with Node.js, I'll be creating a blog. It's something that I have wanted to do for a while and my aim is to have it complete (when is a project really, truly complete.) by the end of April, 2020.
-
-## Development
-
-I will be using Node, Express and MongoDB for this project.
+The blog currently allows the user to post to the MongoDB database and store a blog post. All posts can be viewed on the homepage and then edited on a seperate admin page. The user can delete the posts as they wish, but no confirmation is in place yet.
 
 ## Things to do
 
