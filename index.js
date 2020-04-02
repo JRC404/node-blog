@@ -12,7 +12,7 @@ mongoose.connect(`${process.env.DatabaseURL}`, {
 });
 
 const app = express();
-const getPost = require("./lib/getPost");
+const index = require("./routes/index");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
@@ -32,30 +32,13 @@ app.engine(
 
 app.set("view engine", ".hbs");
 
-const indexRoutes = require("./controllers/index");
-app.get("/", indexRoutes.getIndex);
-
-app.get("/write", indexRoutes.getWrite);
-app.post("/write", indexRoutes.postWrite);
-
-app.post("/posts/:id", indexRoutes.postIndex);
-app.post("/edit/:id", indexRoutes.postEdit);
-app.post("/delete/posts/:id", indexRoutes.postDelete);
-
-app.get("/signup", indexRoutes.getSignup);
-app.post("/signup", indexRoutes.postSignup);
-
-app.get("/comment", indexRoutes.getComment);
-
-app.get("/dean", indexRoutes.getDean);
-
+app.use("/", index);
 app.use((req, res, next) => {
-  // req, res and next are all able to be used inside of this function
   if (res.status(404)) {
-    res.render("404"); // we need a 404.hbs
-    return; // to leave the if statement
+    res.render("404");
+    return;
   }
-  next(); // runs the next middleware function... is there one to run?
+  next();
 });
 
 app.listen(process.env.PORT || 3005, () => {
