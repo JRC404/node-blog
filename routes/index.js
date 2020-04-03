@@ -15,6 +15,7 @@ router.get("/signup", indexRoutes.getSignup);
 router.post("/signup", indexRoutes.postSignup);
 
 router.get("/comment", indexRoutes.getComment);
+router.post("/comment", indexRoutes.postComment);
 
 router.get("/dean", indexRoutes.getDean);
 

@@ -14,16 +14,18 @@ exports.getIndex = async (req, res) => {
       content: obj.blogContent,
       author: obj.blogAuthor,
       createdOn: obj.createdOn.toUTCString(),
-      ID: obj._id
+      ID: obj._id,
     });
   }
 
   for (const obj of commentInfo) {
     newCommentInfo.push({
       comment: obj.comment,
-      commentAuthor: obj.author
+      commentAuthor: obj.author,
+      createdOn: obj.createdOn.toUTCString(),
     });
   }
+  console.log(newCommentInfo);
   res.render("index", { newPostInfo, newCommentInfo });
 };
 
@@ -41,7 +43,7 @@ exports.postEdit = async (req, res) => {
   await BlogSchema.findByIdAndUpdate(req.params.id, {
     blogTitle: blogTitle,
     blogContent: blogContent,
-    blogAuthor: blogAuthor
+    blogAuthor: blogAuthor,
   });
   res.redirect("/");
 };
@@ -71,7 +73,7 @@ exports.postSignup = async (req, res) => {
     err.status = 400;
     console.log(err);
     res.render("signup", {
-      errorMessage: `${email} already taken. A user with that email has already registered.`
+      errorMessage: `${email} already taken. A user with that email has already registered.`,
     });
     return;
   }
@@ -79,7 +81,7 @@ exports.postSignup = async (req, res) => {
   const user = new UserSchema({
     username: username,
     email: email,
-    password: password
+    password: password,
   });
   user.save();
 
@@ -93,11 +95,26 @@ exports.getComment = async (req, res) => {
   for (const obj of commentInfo) {
     newCommentInfo.push({
       comment: obj.comment,
-      commentAuthor: obj.author
+      commentAuthor: obj.author,
     });
   }
 
   res.render("comment");
+};
+
+exports.postComment = async (req, res) => {
+  let comment = req.body.comment;
+  let author = req.body.author;
+
+  const newComment = new CommentSchema({
+    comment: comment,
+    author: author,
+    createdOn: Date.now(),
+    upVotes: 0,
+  });
+
+  await newComment.save(); // javascript was gigiddy.
+  res.redirect("/");
 };
 
 exports.getDean = (req, res) => {
@@ -118,7 +135,7 @@ exports.postWrite = async (req, res) => {
     blogContent: blogContent,
     blogAuthor: blogAuthor,
     createdOn: Date.now(),
-    upVotes: 0
+    upVotes: 0,
   });
 
   await newBlog.save(); // javascript was gigiddy.

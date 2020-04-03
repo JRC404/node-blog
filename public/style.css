@@ -10,7 +10,7 @@ body {
     height: auto;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    /* text-align: center; */
     /* align-items: center; */
     align-content: center;
     background-color: white;

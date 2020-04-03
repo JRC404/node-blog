@@ -4,26 +4,26 @@ const blogSchema = new mongoose.Schema({
   blogTitle: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   blogContent: {
     type: String,
-    required: true
+    required: true,
   },
   createdOn: {
     type: Date,
     required: true,
-    unique: false
+    unique: false,
   },
   blogAuthor: {
     type: String,
-    required: true
+    required: true,
   },
   upVotes: {
     type: Number,
     required: true,
-    unique: false
-  }
+    unique: false,
+  },
 });
 
 module.exports = mongoose.model("blogs", blogSchema);
