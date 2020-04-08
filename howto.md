@@ -1,0 +1,1 @@
+# A walkthrough on how to navigate the site
