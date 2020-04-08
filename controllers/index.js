@@ -1,6 +1,6 @@
-const BlogSchema = require("../models/blog");
-const UserSchema = require("../models/user");
-const CommentSchema = require("../models/comments");
+const BlogSchema = require('../models/blog');
+const UserSchema = require('../models/user');
+const CommentSchema = require('../models/comments');
 
 exports.getIndex = async (req, res) => {
   let postInfo = await BlogSchema.find({});
@@ -26,13 +26,13 @@ exports.getIndex = async (req, res) => {
     });
   }
   console.log(newCommentInfo);
-  res.render("index", { newPostInfo, newCommentInfo });
+  res.render('index', { newPostInfo, newCommentInfo });
 };
 
 exports.postIndex = async (req, res) => {
   console.log(req.params);
 
-  res.render("edit", { id: req.params.id });
+  res.render('edit', { id: req.params.id });
 };
 
 exports.postEdit = async (req, res) => {
@@ -45,17 +45,17 @@ exports.postEdit = async (req, res) => {
     blogContent: blogContent,
     blogAuthor: blogAuthor,
   });
-  res.redirect("/");
+  res.redirect('/');
 };
 
 exports.postDelete = async (req, res) => {
   await BlogSchema.findByIdAndRemove(req.params.id, {});
 
-  res.redirect("/");
+  res.redirect('/');
 };
 
 exports.getSignup = (req, res) => {
-  res.render("signup");
+  res.render('signup');
 };
 
 exports.postSignup = async (req, res) => {
@@ -67,12 +67,12 @@ exports.postSignup = async (req, res) => {
 
   if (existingUser) {
     let err = new Error(
-      `${email}A user with that email has already registered.`
+      `${email}A user with that email has already registered.`,
     );
 
     err.status = 400;
     console.log(err);
-    res.render("signup", {
+    res.render('signup', {
       errorMessage: `${email} already taken. A user with that email has already registered.`,
     });
     return;
@@ -85,7 +85,7 @@ exports.postSignup = async (req, res) => {
   });
   user.save();
 
-  res.redirect("/");
+  res.redirect('/');
 };
 
 exports.getComment = async (req, res) => {
@@ -99,7 +99,7 @@ exports.getComment = async (req, res) => {
     });
   }
 
-  res.render("comment");
+  res.render('comment');
 };
 
 exports.postComment = async (req, res) => {
@@ -114,15 +114,15 @@ exports.postComment = async (req, res) => {
   });
 
   await newComment.save(); // javascript was gigiddy.
-  res.redirect("/");
+  res.redirect('/');
 };
 
 exports.getDean = (req, res) => {
-  res.render("dean");
+  res.render('dean');
 };
 
 exports.getWrite = async (req, res) => {
-  res.render("write");
+  res.render('write');
 };
 
 exports.postWrite = async (req, res) => {
@@ -139,5 +139,5 @@ exports.postWrite = async (req, res) => {
   });
 
   await newBlog.save(); // javascript was gigiddy.
-  res.redirect("/");
+  res.redirect('/');
 };
