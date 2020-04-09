@@ -15,6 +15,8 @@ The blog currently allows the user to post to the MongoDB database and store a b
 - [x] Routes
 - [x] Comments
 - [ ] Properly do the comments, Jacob.
+- [x] Categories
+- [ ] Properly do the categories, Jacob.
 - [ ] Documentation / Comments / Wiki
 - [ ] Sessions for sign in
 - [ ] Research into safe deployment. You've done deployment, Jacob. Now, do it safely.
