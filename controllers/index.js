@@ -13,6 +13,7 @@ exports.getIndex = async (req, res) => {
       title: obj.blogTitle,
       content: obj.blogContent,
       author: obj.blogAuthor,
+      category: obj.category,
       createdOn: obj.createdOn.toUTCString(),
       ID: obj._id,
     });
@@ -36,13 +37,21 @@ exports.postIndex = async (req, res) => {
 };
 
 exports.postEdit = async (req, res) => {
-  let blogTitle = req.body.blogTitle;
-  let blogContent = req.body.blogContent;
-  let blogAuthor = req.body.blogAuthor;
+  let post = await BlogSchema.findById(req.params.id);
+  let blogTitle = req.body.blogTitle || post.blogTitle;
+  let blogContent = req.body.blogContent || post.blogContent;
+  let category = req.body.category || post.category;
+  let blogAuthor = req.body.blogAuthor || post.blogAuthor;
+
+  /**
+   * pull down post from database
+   *
+   *  */
 
   await BlogSchema.findByIdAndUpdate(req.params.id, {
     blogTitle: blogTitle,
     blogContent: blogContent,
+    category: category,
     blogAuthor: blogAuthor,
   });
   res.redirect('/');
@@ -129,11 +138,13 @@ exports.postWrite = async (req, res) => {
   let blogTitle = req.body.blogTitle;
   let blogContent = req.body.blogContent;
   let blogAuthor = req.body.blogAuthor;
+  let category = req.body.category;
 
   const newBlog = new BlogSchema({
     blogTitle: blogTitle,
     blogContent: blogContent,
     blogAuthor: blogAuthor,
+    category: category,
     createdOn: Date.now(),
     upVotes: 0,
   });

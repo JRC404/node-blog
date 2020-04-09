@@ -24,6 +24,11 @@ const blogSchema = new mongoose.Schema({
     required: true,
     unique: false,
   },
+  category: {
+    type: String,
+    required: true,
+    unique: false,
+  },
 });
 
 module.exports = mongoose.model('blogs', blogSchema);
