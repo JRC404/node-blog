@@ -135,9 +135,11 @@ exports.getWrite = async (req, res) => {
     });
   }
 
-  console.log(existingCategories.length);
+  for (let i = 0; i < existingCategories.length; i++) {
+    console.log(existingCategories[i]);
+  }
 
-  res.render('write');
+  res.render('write', { existingCategories });
 };
 
 exports.postWrite = async (req, res) => {
