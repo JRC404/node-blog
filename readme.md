@@ -2,6 +2,8 @@
 
 The blog currently allows the user to post to the MongoDB database and store a blog post. All posts can be viewed on the homepage and then edited on a seperate admin page. The user can delete the posts as they wish, but no confirmation is in place yet.
 
+I've found out quite a lot about MongoDB and Node in this project. The structure of a Node application is something I have ignored in the past, not really focusing on best practice but more... "Well, it works." Now, I have focused on best practice, using controllers, routes, models etc and trying to keep my main 'index.js' as clean as possible.
+
 ## Things to do
 
 - [x] Express server
