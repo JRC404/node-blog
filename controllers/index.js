@@ -26,7 +26,7 @@ exports.getIndex = async (req, res) => {
       createdOn: obj.createdOn.toUTCString(),
     });
   }
-  console.log(newCommentInfo);
+  // console.log(newCommentInfo);
   res.render('index', { newPostInfo, newCommentInfo });
 };
 
@@ -42,11 +42,6 @@ exports.postEdit = async (req, res) => {
   let blogContent = req.body.blogContent || post.blogContent;
   let category = req.body.category || post.category;
   let blogAuthor = req.body.blogAuthor || post.blogAuthor;
-
-  /**
-   * pull down post from database
-   *
-   *  */
 
   await BlogSchema.findByIdAndUpdate(req.params.id, {
     blogTitle: blogTitle,
@@ -131,6 +126,17 @@ exports.getDean = (req, res) => {
 };
 
 exports.getWrite = async (req, res) => {
+  let category = await BlogSchema.find({});
+  let existingCategories = [];
+
+  for (const obj of category) {
+    existingCategories.push({
+      category: obj.category,
+    });
+  }
+
+  console.log(existingCategories.length);
+
   res.render('write');
 };
 
