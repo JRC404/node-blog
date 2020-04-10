@@ -96,3 +96,8 @@ li a {
 li a:hover {
     background-color: #2f4858;
 }
+
+.links {
+    text-decoration: none;
+    color: black;
+}
