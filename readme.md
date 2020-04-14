@@ -25,6 +25,6 @@ I've found out quite a lot about MongoDB and Node in this project. The structure
 
 ## Contributors
 
-Dean Singleton
+Dean Singleton, the man, the myth, the legend.
 
 Mongoose Documentation
