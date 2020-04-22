@@ -20,8 +20,9 @@ I've found out quite a lot about MongoDB and Node in this project. The structure
 - [x] Categories
 - [ ] Properly do the categories, Jacob.
 - [ ] Documentation / Comments / Wiki
-- [ ] Sessions for sign in
+- [ ] Sessions for sign in / JWT
 - [ ] Research into safe deployment. You've done deployment, Jacob. Now, do it safely.
+- [x] Testing with Jest, Supertest
 
 ## Contributors
 
