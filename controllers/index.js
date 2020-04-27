@@ -30,6 +30,27 @@ exports.getIndex = async (req, res) => {
   res.render('index', { newPostInfo, newCommentInfo });
 };
 
+exports.getPost = async (req, res) => {
+  let postInfo = await BlogSchema.find({});
+  let newPostInfo = [];
+
+  for (const obj of postInfo) {
+    newPostInfo.push({
+      title: obj.blogTitle,
+      content: obj.blogContent,
+      author: obj.blogAuthor,
+      category: obj.category,
+      createdOn: obj.createdOn.toUTCString(),
+      ID: obj._id,
+    });
+  }
+
+  console.log(newPostInfo);
+  
+  
+  res.render('posts', { newPostInfo });
+}
+
 exports.postIndex = async (req, res) => {
   console.log(req.params);
 
