@@ -31,19 +31,18 @@ exports.getIndex = async (req, res) => {
 };
 
 exports.getPost = async (req, res) => {
-  let postInfo = await BlogSchema.find({});
+  let individualPost = await BlogSchema.findById('insert a post ID here.');
   let newPostInfo = [];
-
-  for (const obj of postInfo) {
+  
+  
     newPostInfo.push({
-      title: obj.blogTitle,
-      content: obj.blogContent,
-      author: obj.blogAuthor,
-      category: obj.category,
-      createdOn: obj.createdOn.toUTCString(),
-      ID: obj._id,
+      title: individualPost.blogTitle,
+      content: individualPost.blogContent,
+      author: individualPost.blogAuthor,
+      category: individualPost.category,
+      createdOn: individualPost.createdOn.toUTCString(),
+      ID: individualPost._id,
     });
-  }
 
   console.log(newPostInfo);
   
