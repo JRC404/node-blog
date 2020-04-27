@@ -23,6 +23,7 @@ Development is slower than when it first started as I have been diving into C# a
 - [ ] Sessions for sign in / JWT
 - [ ] Research into safe deployment. You've done deployment, Jacob. Now, do it safely.
 - [x] Testing with Jest, Supertest
+- [ ] Posts on seperate pages
 
 ## Contributors
 
