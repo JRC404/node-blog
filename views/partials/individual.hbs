@@ -1,22 +1,22 @@
 <div class="post">
     <div class="information">
-        {{!-- <h2 class="title"><a href="/posts/{{this.title}}">{{this.title}}</a></h2> --}}
-        <h2 class="title">{{this.title}}</h2>
-        <p class="author">By {{this.author}}</p>
-        <p class="category">Category: {{this.category}}</p>
-        <p class="timestamp">Created on {{this.createdOn}}</p>
+        {{!-- <h2 class="title"><a href="/posts/{{posts.title}}">{{posts.title}}</a></h2> --}}
+        <h2 class="title">{{posts.title}}</h2>
+        <p class="author">By {{posts.author}}</p>
+        <p class="category">Category: {{posts.category}}</p>
+        <p class="timestamp">Created on {{posts.createdOn}}</p>
     </div>
 
-    <p class="content">{{this.content}}</p>
+    <p class="content">{{posts.content}}</p>
 
     <br>
     <div class="buttonRow">
-        <form action="/posts/{{this.ID}}" method="post">
-            <input type="hidden" name="id" value="{{this.ID}}">
+        <form action="/posts/{{posts.id}}" method="post">
+            <input type="hidden" name="id" value="{{posts.id}}">
             <input type="submit" value="edit">
         </form>
-        <form action="/delete/posts/{{this.ID}}" method="post">
-            <input type="hidden" name="id" value="{{this.ID}}">
+        <form action="/delete/posts/{{posts.id}}" method="post">
+            <input type="hidden" name="id" value="{{posts.id}}">
             <input type="submit" value="delete">
         </form>
     </div>

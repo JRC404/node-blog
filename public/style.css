@@ -49,6 +49,16 @@ body {
 
 .title {
     font-size: 3em;
+    text-decoration: none;
+}
+
+.titleLink:visited {
+    color: inherit;
+}
+
+
+a {
+    text-decoration: none;
 }
 
 .author {

@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const blogSchema = new mongoose.Schema({
-  blogTitle: {
+  title: {
     type: String,
     required: true,
     unique: true,
   },
-  blogContent: {
+  content: {
     type: String,
     required: true,
   },
@@ -15,7 +15,7 @@ const blogSchema = new mongoose.Schema({
     required: true,
     unique: false,
   },
-  blogAuthor: {
+  author: {
     type: String,
     required: true,
   },
@@ -29,6 +29,8 @@ const blogSchema = new mongoose.Schema({
     required: true,
     unique: false,
   },
+}, {
+  toObject: {virtuals: true}
 });
 
 module.exports = mongoose.model('blogs', blogSchema);

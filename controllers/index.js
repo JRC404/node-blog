@@ -3,51 +3,33 @@ const UserSchema = require('../models/user');
 const CommentSchema = require('../models/comments');
 
 exports.getIndex = async (req, res) => {
-  let postInfo = await BlogSchema.find({});
-  let commentInfo = await CommentSchema.find({});
-  let newPostInfo = [];
-  let newCommentInfo = [];
+  let postInfo = await BlogSchema.find();
+  let commentInfo = await CommentSchema.find();
+  let posts = postInfo.map(post => post.toObject());
+  let comments = commentInfo.map(comment => comment.toObject());
 
-  for (const obj of postInfo) {
-    newPostInfo.push({
-      title: obj.blogTitle,
-      content: obj.blogContent,
-      author: obj.blogAuthor,
-      category: obj.category,
-      createdOn: obj.createdOn.toUTCString(),
-      ID: obj._id,
-    });
-  }
-
-  for (const obj of commentInfo) {
-    newCommentInfo.push({
-      comment: obj.comment,
-      commentAuthor: obj.author,
-      createdOn: obj.createdOn.toUTCString(),
-    });
-  }
-  // console.log(newCommentInfo);
-  res.render('index', { newPostInfo, newCommentInfo });
+  res.render('index', { posts, comments });
 };
 
 exports.getPost = async (req, res) => {
-  let individualPost = await BlogSchema.findById('insert a post ID here.');
-  let newPostInfo = [];
+  let individualPost = await BlogSchema.findById('5ea85e520a626511eaa8d996');
+  // let posts = individualPost.map(post => post.toObect());
+  let posts = individualPost.toObject();
+  console.log(posts);
   
-  
-    newPostInfo.push({
-      title: individualPost.blogTitle,
-      content: individualPost.blogContent,
-      author: individualPost.blogAuthor,
-      category: individualPost.category,
-      createdOn: individualPost.createdOn.toUTCString(),
-      ID: individualPost._id,
-    });
+    // newPostInfo.push({
+    //   title: individualPost.blogTitle,
+    //   content: individualPost.blogContent,
+    //   author: individualPost.blogAuthor,
+    //   category: individualPost.category,
+    //   createdOn: individualPost.createdOn.toUTCString(),
+    //   ID: individualPost._id,
+    // });
 
-  console.log(newPostInfo);
+  console.log(posts);
   
   
-  res.render('posts', { newPostInfo });
+  res.render('posts', { posts });
 }
 
 exports.postIndex = async (req, res) => {
@@ -58,16 +40,16 @@ exports.postIndex = async (req, res) => {
 
 exports.postEdit = async (req, res) => {
   let post = await BlogSchema.findById(req.params.id);
-  let blogTitle = req.body.blogTitle || post.blogTitle;
-  let blogContent = req.body.blogContent || post.blogContent;
-  let category = req.body.category || post.category;
-  let blogAuthor = req.body.blogAuthor || post.blogAuthor;
+  let title = req.body.title || post.title;
+  let content = req.body.content || post.content;
+  let category = req.body.category || post.title;
+  let author = req.body.author || post.author;
 
   await BlogSchema.findByIdAndUpdate(req.params.id, {
-    blogTitle: blogTitle,
-    blogContent: blogContent,
-    category: category,
-    blogAuthor: blogAuthor,
+    title,
+    content,
+    category,
+    author,
   });
   res.redirect('/');
 };
@@ -163,16 +145,14 @@ exports.getWrite = async (req, res) => {
 };
 
 exports.postWrite = async (req, res) => {
-  let blogTitle = req.body.blogTitle;
-  let blogContent = req.body.blogContent;
-  let blogAuthor = req.body.blogAuthor;
-  let category = req.body.category;
+  let {title, content, author, category} = req.body;
+  
 
   const newBlog = new BlogSchema({
-    blogTitle: blogTitle,
-    blogContent: blogContent,
-    blogAuthor: blogAuthor,
-    category: category,
+    title,
+    content,
+    author,
+    category,
     createdOn: Date.now(),
     upVotes: 0,
   });
