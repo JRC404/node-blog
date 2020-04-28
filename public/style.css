@@ -1,7 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+
 body {
     margin: 0;
-    background-color: rgb(218, 218, 218);
+    /* background-color: rgb(218, 218, 218); */
+    font-family: 'Heebo', sans-serif;
+    background-color: var(--background);
 }
+
+:root {
+    --navbar: #0E131F;
+    --text: #403F4C;
+    --button: #0E131F;
+    --background: #FDFFFC;
+    --postBackground: #E4E6E3;
+    --crimson: #CC2936;
+}
+
+
 
 #postContainer {
     /* margin-left: 2%; */
@@ -30,14 +45,14 @@ body {
 }
 
 .heading {
-    color: #221d23;
+    color: var(--crimson);
     text-align: center;
     font-size: 3em;
 }
 
 .information {
-    background-color: #221d23;
-    color: white;
+    background-color: var(--postBackground);
+    color: var(--crimson);
     padding: 1em;
     padding-left: 1.5em;
     /* width: 50%; */
@@ -51,11 +66,13 @@ body {
     font-size: 3em;
     text-decoration: none;
 }
+.titleLink {
+    color: inherit;
+}
 
 .titleLink:visited {
     color: inherit;
 }
-
 
 a {
     text-decoration: none;
@@ -76,19 +93,19 @@ input[type=submit] {
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-weight: 400;
-    color: #FFFFFF;
-    background-color: #2f4858;
+    color: var(--background);
+    background-color: var(--button);
     box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
     text-align: center;
     position: relative;
 }
 
-ul {
+.navbar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #221d23;
+    background-color: var(--navbar);
 }
 
 li {
