@@ -1,9 +1,11 @@
 <div class="post">
     <div class="information">
-        <h2 class="title">{{this.title}}</h2>
+        {{!-- <h2 class="title"><a href="/posts/{{this.title}}">{{this.title}}</a></h2> --}}
+        <a class="titleLink" href="/posts/{{this.id}}"><h2 class="title">{{this.title}}</h2></a>
         <p class="author">By {{this.author}}</p>
         <p class="category">Category: {{this.category}}</p>
         <p class="timestamp">Created on {{this.createdOn}}</p>
+        <p>ID of post: {{this.id}}</p>
     </div>
 
     <p class="content">{{this.content}}</p>
@@ -13,12 +15,12 @@
 
     <br>
     <div class="buttonRow">
-        <form action="/posts/{{this.ID}}" method="post">
-            <input type="hidden" name="id" value="{{this.ID}}">
+        <form action="/posts/{{this.id}}" method="post">
+            <input type="hidden" name="id" value="{{this.id}}">
             <input type="submit" value="edit">
         </form>
-        <form action="/delete/posts/{{this.ID}}" method="post">
-            <input type="hidden" name="id" value="{{this.ID}}">
+        <form action="/delete/posts/{{this.id}}" method="post">
+            <input type="hidden" name="id" value="{{this.id}}">
             <input type="submit" value="delete">
         </form>
     </div>

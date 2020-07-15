@@ -5,6 +5,8 @@ const indexRoutes = require('../controllers/index');
 
 router.get('/', indexRoutes.getIndex);
 
+router.get('/posts', indexRoutes.getPost);
+
 router.get('/write', indexRoutes.getWrite);
 router.post('/write', indexRoutes.postWrite);
 
