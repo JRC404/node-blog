@@ -16,19 +16,19 @@ exports.getPost = async (req, res) => {
   // let posts = individualPost.map(post => post.toObect());
   let posts = individualPost.toObject();
   console.log(posts);
-  
-    // newPostInfo.push({
-    //   title: individualPost.blogTitle,
-    //   content: individualPost.blogContent,
-    //   author: individualPost.blogAuthor,
-    //   category: individualPost.category,
-    //   createdOn: individualPost.createdOn.toUTCString(),
-    //   ID: individualPost._id,
-    // });
+
+  // newPostInfo.push({
+  //   title: individualPost.blogTitle,
+  //   content: individualPost.blogContent,
+  //   author: individualPost.blogAuthor,
+  //   category: individualPost.category,
+  //   createdOn: individualPost.createdOn.toUTCString(),
+  //   ID: individualPost._id,
+  // });
 
   console.log(posts);
-  
-  
+
+
   res.render('posts', { posts });
 }
 
@@ -56,11 +56,13 @@ exports.postEdit = async (req, res) => {
 
 exports.postDelete = async (req, res) => {
   await BlogSchema.findByIdAndRemove(req.params.id, {});
-  
+
   res.redirect('/');
 };
 
-exports.getSignup = (req, res) => {
+exports.getSignup = async (req, res) => {
+  let allUsers = await UserSchema.find({});
+  console.log(allUsers);
   res.render('signup');
 };
 
@@ -68,9 +70,7 @@ exports.postSignup = async (req, res) => {
   let username = req.body.username;
   let email = req.body.email;
   let password = req.body.password;
-
   let existingUser = await UserSchema.findOne({ email });
-
   if (existingUser) {
     let err = new Error(
       `${email}A user with that email has already registered.`,
@@ -147,8 +147,8 @@ exports.getWrite = async (req, res) => {
 };
 
 exports.postWrite = async (req, res) => {
-  let {title, content, author, category} = req.body;
-  
+  let { title, content, author, category } = req.body;
+
 
   const newBlog = new BlogSchema({
     title,
