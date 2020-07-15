@@ -1,6 +1,7 @@
 <select id="selectCategory">
-    {{!-- <option>Choose a category</option> --}}
-    <option>{{this.existingCategories}}</option>
+    {{#each existingCategories}}
+    <option>
+        {{@key}} : {{this}}
+    </option>
+    {{/each}}
 </select><br>
-
-{{!-- this.category --}}

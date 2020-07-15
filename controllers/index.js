@@ -56,7 +56,7 @@ exports.postEdit = async (req, res) => {
 
 exports.postDelete = async (req, res) => {
   await BlogSchema.findByIdAndRemove(req.params.id, {});
-
+  
   res.redirect('/');
 };
 
@@ -132,14 +132,16 @@ exports.getWrite = async (req, res) => {
   let existingCategories = [];
 
   for (const obj of category) {
-    existingCategories.push({
-      category: obj.category,
-    });
+    existingCategories.push(
+      obj.category
+    );
   }
 
-  for (let i = 0; i < existingCategories.length; i++) {
-    console.log(existingCategories[i]);
-  }
+  console.log(existingCategories)
+
+  // for (let i = 0; i < existingCategories.length; i++) {
+  //   console.log(existingCategories[i]);
+  // }
 
   res.render('write', { existingCategories });
 };
