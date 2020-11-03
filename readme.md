@@ -6,6 +6,7 @@ MongoDB is the database of choice. Things to do list to be considerably reduced 
 
 ## Things to do
 
+- [ ] Display posts in a beautiful manner.
 - [x] Comments
 - [ ] Properly do the comments, Jacob.
 - [x] Categories
